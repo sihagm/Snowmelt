@@ -198,11 +198,11 @@ bright = RGB.mask(bright);
 var indices = ee.Image.cat(
   RGB.expression("(green - nir) / (green + nir)", {
   nir: RGB.select("B8"),
-  green: RGB.select("B4")
+  green: RGB.select("B3")
 }).rename("ndwi"),
   RGB.expression("(green - mir) / (green + mir)", {
   mir: RGB.select("B11"),
-  green: RGB.select("B4")
+  green: RGB.select("B3")
 }).rename("mndwi"))
 
 var watermask = indices.expression('b("ndwi") > 0 && b("mndwi") > 0.3')
